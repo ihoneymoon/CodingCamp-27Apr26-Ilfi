@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Expense &amp; Budget Visualizer</h1>
+    <output id="balance-display">$0.00</output>
+    <button id="theme-toggle" type="button">Dark Mode</button>
+  </header>
+
+  <aside id="storage-error-banner" hidden></aside>
+
+  <main>
+    <section id="form-section">
+      <form id="transaction-form">
+        <label for="item-name">Item Name</label>
+        <input id="item-name" type="text" placeholder="e.g. Lunch" autocomplete="off" />
+
+        <label for="item-amount">Amount</label>
+        <input id="item-amount" type="number" placeholder="0.00" min="0" step="any" />
+
+        <label for="item-category">Category</label>
+        <select id="item-category">
+          <option value="">Select category</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Fun">Fun</option>
+        </select>
+
+        <button type="submit">Add Expense</button>
+        <p id="form-errors" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="chart-section">
+      <canvas id="spending-chart"></canvas>
+      <p id="chart-empty-msg" hidden>No data to display.</p>
+    </section>
+
+    <section id="list-section">
+
+      <div class="limit-bar">
+        <label for="spending-limit-input">Spending limit</label>
+        <input
+          id="spending-limit-input"
+          type="number"
+          min="0"
+          step="any"
+          placeholder="e.g. 50"
+          aria-label="Spending limit per transaction"
+        />
+      </div>
+
+      <div class="sort-bar">
+        <label for="sort-option">Sort by</label>
+        <select id="sort-option">
+          <option value="">Sort by…</option>
+          <option value="amount">Sort by Amount</option>
+          <option value="category">Sort by Category</option>
+        </select>
+      </div>
+
+      <ul id="transaction-list" aria-label="Transaction list"></ul>
+      <p id="list-empty-msg">No expenses recorded yet.</p>
+      
+    </section>
+
+  </main>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
